@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap');
+/* font-family: 'Zen Tokyo Zoo', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Loop&family=Zen+Tokyo+Zoo&display=swap');
+/* font-family: 'Zen Loop', cursive; */
+:root {
+    --primarym: #8A4FFF;
+    --dark: #131A26;
+    --grey: #CCC;
+    --light: #EEE;
+    --blue: #228B22;
+    --red: #B22222;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+
+    /*sẽ gán cứng width and height khi padding-right:  sẽ khong bị thay đổi */
+    box-sizing: border-box;
+    font-family: 'Zen Loop', cursive;
+}
+
+body{
+    background-color: var(--light);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header{
+    background-color: var(--dark);
+    padding: 8px;
+    display: flex;
+
+    /* căn giữa chữ */
+    justify-content: center;
+
+    align-items: center;
+    /* căn giữa  */
+    /* justify-content: space-between; */
+
+    border-bottom: 3px solid var(--primarym);
+}
+
+header h1{
+    font-family: 'Zen Tokyo Zoo', cursive;
+    color: #fff;
+    font-size: 42px;
+    text-transform: uppercase;
+    text-shadow: -4px -1px var(--primarym);
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0%;
+}
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+ 
+}
+
+.cell {
+    position: relative;
+    border: 1px solid var(--dark);
+    width: 100px;
+    padding-top: 100%;
+    cursor: pointer;
+    
+}
+
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top:none ;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7){
+    border-left: none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9){
+    border-right:none ;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9){
+    border-bottom:none ;
+}
+
+/* chỉnh hover icon chuột */
+
+
+ /* làm ký tự  x o và hover */
+.cell.x::after,
+.cell.x::before,
+/* các :not(.x):not(.o) các class .x .o sẽ được bỏ qua */
+.board.turn-x .cell:not(.x):not(.o):hover:before,
+.board.turn-x .cell:not(.x):not(.o):hover::after{
+    content: "";
+    display: block;
+    /* position: absolute chỉnh cứng hình ảnh dạng fixed  */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 90px;
+    /* background-color: var(--dark); */
+    border-radius: 99px;
+}
+
+/* mau xanh va do  */
+
+.cell.x::after,
+.cell.x::before,
+/* các :not(.x):not(.o) các class .x .o sẽ được bỏ qua */
+.board.turn-x .cell:not(.x):not(.o):hover:before,
+.board.turn-x .cell:not(.x):not(.o):hover::after{
+    
+    background-color: var(--red);
+}
+
+.cell.x::after,
+.cell.x::before,
+/* các :not(.x):not(.o) các class .x .o sẽ được bỏ qua */
+.board.turn-x .cell:not(.x):not(.o):hover:before,
+.board.turn-x .cell:not(.x):not(.o):hover::after{
+    
+    background-color: var(--red);
+}
+/* làm dấu chéo x  */
+.cell.x::before,
+.board.turn-x .cell:not(.x):not(.o):hover::before {
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+.cell.x::after,
+.board.turn-x .cell:not(.x):not(.o):hover::after {
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+/* làm vòng tròn o  */
+.cell.o::before,
+.board.turn-o .cell:not(.x):not(.o):hover::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 10px solid var(--dark);
+    height: 60px;
+    width: 60px;
+    /* transform: translate(); chỉnh cứng hình ảnh với góc tọa độ 0 0 */
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+/* lam vong tron xanh  */
+.cell.o::before,
+.board.turn-o .cell:not(.x):not(.o):hover::before{
+    border: 10px solid var(--blue);
+}
+.board.turn-x .cell:not(.x):not(.o):hover::before,
+.board.turn-x .cell:not(.x):not(.o):hover::after {
+    background-color: var(--grey);
+}
+
+/* hover turn o  */
+.board.turn-o .cell:not(.x):not(.o):hover::before{
+    background-color: var(--light);
+    border: 10px solid var(--grey);
+}
+
+/* làm ký tự  x o và hover */
